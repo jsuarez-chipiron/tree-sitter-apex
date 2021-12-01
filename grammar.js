@@ -83,7 +83,6 @@ module.exports = grammar({
       $.hex_floating_point_literal,
       $.true,
       $.false,
-      $.character_literal,
       $.string_literal,
       $.null_literal
     ),
@@ -136,7 +135,7 @@ module.exports = grammar({
 
     false: $ => 'false',
 
-    character_literal: $ => token(seq(
+    string_literal: $ => token(seq(
       "'",
       repeat1(choice(
         /[^\\'\n]/,
@@ -146,11 +145,21 @@ module.exports = grammar({
       "'"
     )),
 
-    string_literal: $ => token(choice(
-      seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"'),
-      // TODO: support multiline string literals by debugging the following:
-      // seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"', '+', /\n/, '"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)))
-    )),
+    // string_literal: $ => token(seq(
+    //   "'",
+    //   repeat1(choice(
+    //     /[^\\'\n]/,
+    //     /\\./,
+    //     /\\\n/
+    //   )),
+    //   "'"
+    // )),
+
+    // string_literal: $ => token(choice(
+    //   seq("'", repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), "'"),
+    //   // TODO: support multiline string literals by debugging the following:
+    //   // seq('"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)), '"', '+', /\n/, '"', repeat(choice(/[^\\"\n]/, /\\(.|\n)/)))
+    // )),
 
     null_literal: $ => 'null',
 

@@ -8,10 +8,6 @@
         "named": true
       },
       {
-        "type": "character_literal",
-        "named": true
-      },
-      {
         "type": "decimal_floating_point_literal",
         "named": true
       },
@@ -3700,10 +3696,6 @@
   {
     "type": "char",
     "named": false
-  },
-  {
-    "type": "character_literal",
-    "named": true
   },
   {
     "type": "class",
