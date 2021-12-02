@@ -161,15 +161,29 @@ module.exports = grammar({
       "'"
     )),
 
+    // query_literal: $ => token(seq(
+    //   "[",
+    //   repeat(choice(
+    //     /.*/,
+    //     /\n/
+    //   )),
+    //   caseInsensitive("select"),
+    //   repeat(choice(
+    //     /./,
+    //     /\n/
+    //   )),
+    //   "]"
+    // )),
+
     query_literal: $ => token(seq(
       "[",
       repeat(choice(
-        /.*/,
+        /\s/,
         /\n/
       )),
       caseInsensitive("select"),
       repeat(choice(
-        /./,
+        /[^\]]/,
         /\n/
       )),
       "]"
@@ -480,7 +494,9 @@ module.exports = grammar({
       $.local_variable_declaration,
       $.throw_statement,
       $.try_statement,
-      $.try_with_resources_statement
+      $.try_with_resources_statement,
+      $.dml_statement,
+      $.enhanced_dml_statement
     ),
 
     block: $ => seq(
@@ -621,6 +637,39 @@ module.exports = grammar({
       field('value', $.expression),
       ')',
       field('body', $.statement)
+    ),
+
+    dml_statement: $ => seq(
+        choice(
+            caseInsensitive('insert'),
+            caseInsensitive('update'),
+            caseInsensitive('delete')
+        ),
+        // choice(
+            $.identifier,
+            // $.query_literal
+        // ),
+        ';'
+    ),
+
+    // enhanced_dml_statement: $ => seq(
+    //     choice(
+    //         caseInsensitive('insert'),
+    //         caseInsensitive('update'),
+    //         caseInsensitive('delete')
+    //     ),
+    //     /[^;]*/,
+    //     ';'
+    // ),
+
+    enhanced_dml_statement: $ => seq(
+        choice(
+            caseInsensitive('insert'),
+            caseInsensitive('update'),
+            caseInsensitive('delete')
+        ),
+        $.query_literal,
+        ';'
     ),
 
     // Annotations
@@ -779,7 +828,8 @@ module.exports = grammar({
         'volatile',
         'global',
         'virtual',
-        'with sharing'
+        'with sharing',
+        'without sharing'
     )),
 
     type_parameters: $ => seq(

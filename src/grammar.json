@@ -1076,7 +1076,7 @@
               "members": [
                 {
                   "type": "PATTERN",
-                  "value": ".*"
+                  "value": "\\s"
                 },
                 {
                   "type": "PATTERN",
@@ -1096,7 +1096,7 @@
               "members": [
                 {
                   "type": "PATTERN",
-                  "value": "."
+                  "value": "[^\\]]"
                 },
                 {
                   "type": "PATTERN",
@@ -3255,6 +3255,14 @@
         {
           "type": "SYMBOL",
           "name": "try_with_resources_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dml_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "enhanced_dml_statement"
         }
       ]
     },
@@ -4089,6 +4097,66 @@
             "type": "SYMBOL",
             "name": "statement"
           }
+        }
+      ]
+    },
+    "dml_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "[iI][nN][sS][eE][rR][tT]"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[uU][pP][dD][aA][tT][eE]"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[dD][eE][lL][eE][tT][eE]"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "enhanced_dml_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "[iI][nN][sS][eE][rR][tT]"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[uU][pP][dD][aA][tT][eE]"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[dD][eE][lL][eE][tT][eE]"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "query_literal"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
         }
       ]
     },
@@ -5037,6 +5105,10 @@
           {
             "type": "STRING",
             "value": "with sharing"
+          },
+          {
+            "type": "STRING",
+            "value": "without sharing"
           }
         ]
       }

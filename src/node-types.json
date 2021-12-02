@@ -270,7 +270,15 @@
         "named": true
       },
       {
+        "type": "dml_statement",
+        "named": true
+      },
+      {
         "type": "do_statement",
+        "named": true
+      },
+      {
+        "type": "enhanced_dml_statement",
         "named": true
       },
       {
@@ -1334,6 +1342,21 @@
     }
   },
   {
+    "type": "dml_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "do_statement",
     "named": true,
     "fields": {
@@ -1422,6 +1445,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "enhanced_dml_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "query_literal",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3967,6 +4005,10 @@
   },
   {
     "type": "with sharing",
+    "named": false
+  },
+  {
+    "type": "without sharing",
     "named": false
   },
   {
