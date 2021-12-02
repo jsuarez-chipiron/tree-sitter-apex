@@ -36,6 +36,10 @@
         "named": true
       },
       {
+        "type": "query_literal",
+        "named": true
+      },
+      {
         "type": "string_literal",
         "named": true
       },
@@ -3856,6 +3860,10 @@
   {
     "type": "public",
     "named": false
+  },
+  {
+    "type": "query_literal",
+    "named": true
   },
   {
     "type": "record",

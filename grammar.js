@@ -27,6 +27,21 @@ const PREC = {
   PARENS: 16,      // (Expression)
 };
 
+function toCaseInsensitive(a) {
+  var ca = a.charCodeAt(0);
+  if (ca>=97 && ca<=122) return `[${a}${a.toUpperCase()}]`;
+  if (ca>=65 && ca<= 90) return `[${a.toLowerCase()}${a}]`;
+  return a;
+}
+
+function caseInsensitive (keyword) {
+  return new RegExp(keyword
+    .split('')
+    .map(toCaseInsensitive)
+    .join('')
+  )
+}
+
 module.exports = grammar({
   name: 'apex',
 
@@ -84,6 +99,7 @@ module.exports = grammar({
       $.true,
       $.false,
       $.string_literal,
+      $.query_literal,
       $.null_literal
     ),
 
@@ -144,6 +160,24 @@ module.exports = grammar({
       )),
       "'"
     )),
+
+    query_literal: $ => token(seq(
+      "[",
+      /.*/,
+      caseInsensitive("select"),
+      /.*/,
+      "]"
+    )),
+
+    // query_literal: $ => token(seq(
+    //   "[",
+    //   repeat1(choice(
+    //     /[^\\'\n]/,
+    //     /\\./,
+    //     /\\\n/
+    //   )),
+    //   "]"
+    // )),
 
     // string_literal: $ => token(seq(
     //   "'",

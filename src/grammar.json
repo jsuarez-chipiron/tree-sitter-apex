@@ -50,6 +50,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "query_literal"
+        },
+        {
+          "type": "SYMBOL",
           "name": "null_literal"
         }
       ]
@@ -1052,6 +1056,34 @@
           {
             "type": "STRING",
             "value": "'"
+          }
+        ]
+      }
+    },
+    "query_literal": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "["
+          },
+          {
+            "type": "PATTERN",
+            "value": ".*"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[sS][eE][lL][eE][cC][tT]"
+          },
+          {
+            "type": "PATTERN",
+            "value": ".*"
+          },
+          {
+            "type": "STRING",
+            "value": "]"
           }
         ]
       }
