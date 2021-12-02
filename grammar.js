@@ -163,9 +163,15 @@ module.exports = grammar({
 
     query_literal: $ => token(seq(
       "[",
-      /.*/,
+      repeat(choice(
+        /.*/,
+        /\n/
+      )),
       caseInsensitive("select"),
-      /.*/,
+      repeat(choice(
+        /./,
+        /\n/
+      )),
       "]"
     )),
 

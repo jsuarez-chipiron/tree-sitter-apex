@@ -1070,16 +1070,40 @@
             "value": "["
           },
           {
-            "type": "PATTERN",
-            "value": ".*"
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": ".*"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "\\n"
+                }
+              ]
+            }
           },
           {
             "type": "PATTERN",
             "value": "[sS][eE][lL][eE][cC][tT]"
           },
           {
-            "type": "PATTERN",
-            "value": ".*"
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "."
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "\\n"
+                }
+              ]
+            }
           },
           {
             "type": "STRING",
