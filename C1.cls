@@ -6,13 +6,26 @@ global with sharing class AbstractWorker {
             SELECT field1, field2 
             from Account];
 
-        // javier
-
-        insert l;
-        delete l;
-        // javier
-
         return 'javier';
+    }
+
+}
+
+global with sharing class Helper {
+    public String getString(String name) {
+        return 'javier';
+    }
+}
+
+global with sharing class Service {
+
+    public void doIt() {
+        String x = AbstractWorker.getString('javier');
+        System.debug(x);
+
+        Helper helper = new Helper();
+        x = helper.getString('javier');
+        
     }
 
 }

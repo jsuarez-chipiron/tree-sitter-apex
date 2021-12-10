@@ -829,7 +829,8 @@ module.exports = grammar({
         'global',
         'virtual',
         'with sharing',
-        'without sharing'
+        'without sharing',
+        'override'
     )),
 
     type_parameters: $ => seq(
