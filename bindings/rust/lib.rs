@@ -44,9 +44,35 @@ pub const NODE_TYPES: &'static str = include_str!("../../src/node-types.json");
 mod tests {
     #[test]
     fn test_can_load_grammar() {
+        println!("javier");
         let mut parser = tree_sitter::Parser::new();
         parser
             .set_language(super::language())
             .expect("Error loading apex language");
+
+        let lines = &[
+            "public class Foo {",
+            "  public String Bar() {return 'javier';}",
+            "}",
+        ];
+
+        let tree = parser.parse_with(&mut |_byte: usize, position: tree_sitter::Point| -> &[u8] {
+            let row = position.row as usize;
+            let column = position.column as usize;
+            if row < lines.len() {
+                if column < lines[row].as_bytes().len() {
+                    &lines[row].as_bytes()[column..]
+                } else {
+                    "\n".as_bytes()
+                }
+            } else {
+                &[]
+            }
+        }, None).unwrap();
+
+        println!("{:?}", tree);
+
     }
+
+
 }
