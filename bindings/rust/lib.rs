@@ -24,7 +24,8 @@ extern "C" {
 /// Get the tree-sitter [Language][] for this grammar.
 ///
 /// [Language]: https://docs.rs/tree-sitter/*/tree_sitter/struct.Language.html
-pub fn language() -> Language {
+pub fn language() -> Language
+{
     unsafe { tree_sitter_apex() }
 }
 
@@ -41,9 +42,11 @@ pub const NODE_TYPES: &'static str = include_str!("../../src/node-types.json");
 // pub const TAGS_QUERY: &'static str = include_str!("../../queries/tags.scm");
 
 #[cfg(test)]
-mod tests {
+mod tests
+{
     #[test]
-    fn test_can_load_grammar() {
+    fn test_can_load_grammar()
+    {
         println!("javier");
         let mut parser = tree_sitter::Parser::new();
         parser
@@ -56,23 +59,25 @@ mod tests {
             "}",
         ];
 
-        let tree = parser.parse_with(&mut |_byte: usize, position: tree_sitter::Point| -> &[u8] {
-            let row = position.row as usize;
-            let column = position.column as usize;
-            if row < lines.len() {
-                if column < lines[row].as_bytes().len() {
-                    &lines[row].as_bytes()[column..]
-                } else {
-                    "\n".as_bytes()
-                }
-            } else {
-                &[]
-            }
-        }, None).unwrap();
+        let tree = parser
+            .parse_with(
+                &mut |_byte: usize, position: tree_sitter::Point| -> &[u8] {
+                    let row = position.row as usize;
+                    let column = position.column as usize;
+                    if row < lines.len() {
+                        if column < lines[row].as_bytes().len() {
+                            &lines[row].as_bytes()[column..]
+                        } else {
+                            "\n".as_bytes()
+                        }
+                    } else {
+                        &[]
+                    }
+                },
+                None,
+            )
+            .unwrap();
 
         println!("{:?}", tree);
-
     }
-
-
 }

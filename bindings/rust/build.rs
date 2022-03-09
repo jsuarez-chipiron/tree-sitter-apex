@@ -1,4 +1,5 @@
-fn main() {
+fn main()
+{
     let src_dir = std::path::Path::new("src");
 
     let mut c_config = cc::Build::new();
