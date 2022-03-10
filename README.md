@@ -122,6 +122,10 @@ parser.set_language(APEX_LANGUAGE)
 
 ## functionalities
 
+All the functionalities implemented can be checked in the src/Sample.cls file
+
+My personal suggestion is to configure neovim tree_sitter plugin and then use the tree_sitter playground. [https://github.com/nvim-treesitter/playground](https://github.com/nvim-treesitter/playground)
+
 - apex specific modifiers. (global, with/without sharing)
 ```java    
     global with sharing class Class1
