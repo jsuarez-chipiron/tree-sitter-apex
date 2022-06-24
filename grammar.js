@@ -261,6 +261,7 @@ module.exports = grammar({
       ['<=', PREC.REL],
       ['==', PREC.EQUALITY],
       ['!=', PREC.EQUALITY],
+      ['<>', PREC.EQUALITY],
       ['&&', PREC.AND],
       ['||', PREC.OR],
       ['+', PREC.ADD],
