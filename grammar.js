@@ -1184,7 +1184,7 @@ module.exports = grammar({
     super: $ => 'super',
 
     // https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-IdentifierChars
-    identifier: $ => /[\p{L}_$][\p{L}\p{Nd}_$]*/,
+    identifier: $ => /[\p{L}_$][\p{L}\p{Nd}_$]*[?]{0,1}/,
 
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
     comment: $ => token(prec(PREC.COMMENT, choice(

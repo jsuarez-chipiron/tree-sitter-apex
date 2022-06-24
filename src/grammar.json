@@ -6829,7 +6829,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[\\p{L}_$][\\p{L}\\p{Nd}_$]*"
+      "value": "[\\p{L}_$][\\p{L}\\p{Nd}_$]*[?]{0,1}"
     },
     "comment": {
       "type": "TOKEN",
