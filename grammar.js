@@ -99,6 +99,7 @@ module.exports = grammar({
       $.true,
       $.false,
       $.string_literal,
+      $.empty_string_literal,
       $.query_literal,
       $.null_literal
     ),
@@ -160,6 +161,8 @@ module.exports = grammar({
       )),
       "'"
     )),
+
+    empty_string_literal: $ => "''",
 
     // query_literal: $ => token(seq(
     //   "[",

@@ -16,6 +16,10 @@
         "named": true
       },
       {
+        "type": "empty_string_literal",
+        "named": true
+      },
+      {
         "type": "false",
         "named": true
       },
@@ -3774,6 +3778,10 @@
   {
     "type": "else",
     "named": false
+  },
+  {
+    "type": "empty_string_literal",
+    "named": true
   },
   {
     "type": "enum",
