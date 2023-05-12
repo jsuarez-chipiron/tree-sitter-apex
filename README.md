@@ -93,6 +93,18 @@ let mut parser = Parser::new();
 parser.set_language(language).unwrap();
 
 ```
+### use in lua
+
+Once is installed the grammar in the neovim tree-sitter plugin.
+
+```lua
+local ts_utils = require"nvim-treesitter.ts_utils"
+
+local p_bufnr = vim.api.nvim_get_current_buf()
+
+local parser = vim.treesitter.get_parser(p_bufnr, 'apex')
+local root = parser:parse()[1]:root()
+```
 
 ### use in python
 
